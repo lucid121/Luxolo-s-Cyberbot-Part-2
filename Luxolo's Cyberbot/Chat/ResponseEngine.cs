@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Luxolo_s_Cyberbot.Chat
+namespace Luxolo_s_Cyberbot.Chat//
 {
     internal class ResponseEngine
     {
