@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36915.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luxolo's Cyberbot", "Luxolo's Cyberbot\Luxolo's Cyberbot.csproj", "{527CB4DC-5FBB-4FE9-B273-2CDDE915A52A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luxolo_s Cyberbot", "Luxolo's Cyberbot\Luxolo_s Cyberbot.csproj", "{527CB4DC-5FBB-4FE9-B273-2CDDE915A52A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luxolo_s_Cyberbot", "Luxolo_s_Cyberbot\Luxolo_s_Cyberbot.csproj", "{8A4A28D3-0907-4EE4-A254-1DCEDCD03688}"
 EndProject
