@@ -15,7 +15,7 @@ namespace Luxolo_s_Cyberbot_GUI
 {
     public partial class MainWindow : Window
     {
-        // =========================================================
+        
         // 1. CLASS PROPERTIES, CONFIGURATION, & LOCAL DATA BACKUP
         // =========================================================
 
