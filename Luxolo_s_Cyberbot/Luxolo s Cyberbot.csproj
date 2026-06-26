@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Luxolo's Cyberbot\Luxolo_s Cyberbot.csproj" />
+    <ProjectReference Include="..\Luxolo's Cyberbot\Luxolos Cyberbot.csproj" />
   </ItemGroup>
 
 </Project>
