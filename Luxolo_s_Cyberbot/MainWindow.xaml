@@ -1,198 +1,306 @@
 ﻿<Window x:Class="Luxolo_s_Cyberbot_GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CyberBot - Advanced Cybersecurity Assistant"
-        Height="750" Width="1000"
+        Title="CyberBot - Cybersecurity Shield Pro"
+        Height="800" Width="1200"
         WindowStartupLocation="CenterScreen"
         Background="#0B0E14"
         ResizeMode="CanResize">
 
-    <Window.Resources>
-        <!-- ── Smooth Slide-In & Fade-In Animations for Chat Bubbles ── -->
-        <Style x:Key="AnimatedBubbleStyle" TargetType="Border">
-            <Setter Property="RenderTransform">
-                <Setter.Value>
-                    <TranslateTransform Y="30"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Opacity" Value="0"/>
-            <Style.Triggers>
-                <EventTrigger RoutedEvent="Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <!-- Fade-in transition -->
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                             To="1" Duration="0:0:0.45" 
+	<Window.Resources>
+		<!-- Smooth slide and fade-in animations for message bubbles -->
+		<Style x:Key="AnimatedBubbleStyle" TargetType="Border">
+			<Setter Property="RenderTransform">
+				<Setter.Value>
+					<TranslateTransform Y="25"/>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Opacity" Value="0"/>
+			<Style.Triggers>
+				<EventTrigger RoutedEvent="Loaded">
+					<BeginStoryboard>
+						<Storyboard>
+							<DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             To="1" Duration="0:0:0.35"
                                              DecelerationRatio="0.9"/>
-                            <!-- Slide-up transition -->
-                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                             To="0" Duration="0:0:0.4" 
+							<DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                             To="0" Duration="0:0:0.3"
                                              DecelerationRatio="0.9"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
+						</Storyboard>
+					</BeginStoryboard>
+				</EventTrigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
 
-    <!-- Main grid defining a sidebar and main chat room -->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
-            <!-- Left Control Panel & Stats Sidebar -->
-            <ColumnDefinition Width="*"/>
-            <!-- Right Main Chat Console -->
-        </Grid.ColumnDefinitions>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<!-- Column 0: Information, Database Configuration & Activity Logging (Sidebar) -->
+			<ColumnDefinition Width="340"/>
+			<!-- Column 1: Main Conversation Area -->
+			<ColumnDefinition Width="*"/>
+			<!-- Column 2: Interactive Tasks & Reminders Panel -->
+			<ColumnDefinition Width="360"/>
+		</Grid.ColumnDefinitions>
 
-        <!-- ═══════════════════════════════════════════════════
-             COL 0: Dynamic Left Sidebar (Interactive Stats & Bot Status)
-             ═══════════════════════════════════════════════════ -->
-        <Border Grid.Column="0" Background="#111622" BorderBrush="#1F293D" BorderThickness="0,0,1,0">
-            <Grid Margin="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+		<!-- ==========================================
+             COL 0: Side Controls & Live Activity Log
+             ========================================== -->
+		<Border Grid.Column="0" Background="#111622" BorderBrush="#1F293D" BorderThickness="0,0,1,0">
+			<Grid Margin="15">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<!-- Header Logo / Bot Status -->
+					<RowDefinition Height="Auto"/>
+					<!-- DB Config Shield -->
+					<RowDefinition Height="*"/>
+					<!-- Live Activity Log -->
+					<RowDefinition Height="Auto"/>
+					<!-- Suggested Topics & Brand -->
+				</Grid.RowDefinitions>
 
-                <!-- Bot Status Widget -->
-                <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                    <Border CornerRadius="50" Width="90" Height="90" Background="#1D2A3A" BorderBrush="#00FF99" BorderThickness="2" HorizontalAlignment="Center">
-                        <TextBlock Text="🤖" FontSize="44" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,4"/>
-                    </Border>
-                    <TextBlock Text="CYBERBOT v3.0" Foreground="#00FF99" FontWeight="Bold" FontFamily="Segoe UI" FontSize="16" TextAlignment="Center" Margin="0,12,0,2"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Ellipse Width="8" Height="8" Fill="#00FF99" Margin="0,0,6,0" VerticalAlignment="Center">
-                            <Ellipse.Triggers>
-                                <EventTrigger RoutedEvent="Loaded">
-                                    <BeginStoryboard>
-                                        <Storyboard RepeatBehavior="Forever">
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:1" AutoReverse="True"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Ellipse.Triggers>
-                        </Ellipse>
-                        <TextBlock Text="AGENT ACTIVE" Foreground="#8B949E" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </StackPanel>
+				<!-- Bot Identity Details -->
+				<StackPanel Grid.Row="0" Margin="0,0,0,15">
+					<Grid>
+						<Ellipse Width="74" Height="74" Fill="#1D2A3A" Stroke="#00FF99" StrokeThickness="2"/>
+						<TextBlock Text="🛡️" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2"/>
+					</Grid>
+					<TextBlock Text="CYBERBOT v3.0 (POE)" Foreground="#00FF99" FontWeight="Bold" FontSize="15" TextAlignment="Center" Margin="0,8,0,2"/>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<Ellipse Width="6" Height="6" Fill="#00FF99" Margin="0,0,6,0" VerticalAlignment="Center"/>
+						<TextBlock Text="DATABASE MONITOR READY" Foreground="#8B949E" FontSize="10" FontWeight="SemiBold"/>
+					</StackPanel>
+				</StackPanel>
 
-                <!-- User Profile Memory Recall Display -->
-                <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="0,10,0,0">
-                    <Border Background="#1A2234" CornerRadius="8" Padding="15" Margin="0,0,0,15">
-                        <StackPanel>
-                            <TextBlock Text="USER MEMORY BANK" Foreground="#00E1FF" FontSize="11" FontWeight="Bold" Margin="0,0,0,10"/>
-                            <StackPanel Orientation="Horizontal" Margin="0,4">
-                                <TextBlock Text="User:" Foreground="#8B949E" Width="60" FontSize="12"/>
-                                <TextBlock x:Name="TxtMemName" Text="Not set yet" Foreground="White" FontWeight="SemiBold" FontSize="12"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,4">
-                                <TextBlock Text="Topic:" Foreground="#8B949E" Width="60" FontSize="12"/>
-                                <TextBlock x:Name="TxtMemTopic" Text="None" Foreground="White" FontWeight="SemiBold" FontSize="12" TextTrimming="CharacterEllipsis"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,4">
-                                <TextBlock Text="Interest:" Foreground="#8B949E" Width="60" FontSize="12"/>
-                                <TextBlock x:Name="TxtMemInterest" Text="Undecided" Foreground="White" FontWeight="SemiBold" FontSize="12" TextTrimming="CharacterEllipsis"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,4">
-                                <TextBlock Text="Feeling:" Foreground="#8B949E" Width="60" FontSize="12"/>
-                                <TextBlock x:Name="TxtMemFeeling" Text="Neutral" Foreground="White" FontWeight="SemiBold" FontSize="12"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
+				<!-- SQL Express Database Sync Section -->
+				<Border Grid.Row="1" Background="#1E1E2F" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+					<StackPanel>
+						<TextBlock Text="🔌 SQL EXPRESS DATABASE CONNECT" Foreground="#00E1FF" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
+						<TextBlock Text="Connecting to '.\SQLEXPRESS' Local DB" Foreground="#8B949E" FontSize="10" Margin="0,0,0,8"/>
+						<Button x:Name="BtnInitDB" Content="Re-Initialize Database" Click="BtnInitDB_Click" Height="28" Background="#242E42" Foreground="#00FF99" BorderThickness="1" BorderBrush="#00FF99" Cursor="Hand" FontWeight="SemiBold">
+							<Button.Resources>
+								<Style TargetType="Border">
+									<Setter Property="CornerRadius" Value="4"/>
+								</Style>
+							</Button.Resources>
+						</Button>
+						<TextBlock x:Name="TxtDBStatus" Text="Status: Initializing..." Foreground="#FFB000" FontSize="10" TextAlignment="Center" Margin="0,6,0,0"/>
+					</StackPanel>
+				</Border>
 
-                    <Border Background="#1A2234" CornerRadius="8" Padding="15">
-                        <StackPanel>
-                            <TextBlock Text="SUGGESTED KEYWORDS" Foreground="#FF9E00" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
-                            <TextBlock Text="• phishing / passwords&#x0a;• malware / ransomware&#x0a;• scams / identity theft&#x0a;• social media / privacy&#x0a;• 2FA / VPN / firewalls&#x0a;• cookies / encryption" 
-                                       Foreground="#A5B4FC" FontSize="12" LineHeight="18" FontFamily="Consolas"/>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
+				<!-- Activity Log Widget with "Show More" functionality -->
+				<Border Grid.Row="2" Background="#161B29" CornerRadius="8" Padding="12">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
 
-                <!-- Footer disclaimer -->
-                <TextBlock Grid.Row="2" Text="Designed for South African CyberSafety&#x0a;PROG6221 Portfolio Standard" Foreground="#4B5563" FontSize="10" TextAlignment="Center" LineHeight="14"/>
-            </Grid>
-        </Border>
+						<TextBlock Grid.Row="0" Text="📋 BOT ACTIVITY HISTORY" Foreground="#FF9E00" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
 
-        <!-- ═══════════════════════════════════════════════════
-             COL 1: Premium Main Chat Console
-             ═══════════════════════════════════════════════════ -->
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <!-- Upper Header -->
-                <RowDefinition Height="*"/>
-                <!-- Chat Log View -->
-                <RowDefinition Height="Auto"/>
-                <!-- Text Inputs -->
-            </Grid.RowDefinitions>
+						<!-- Listbox to show items -->
+						<ListBox Grid.Row="1" x:Name="LstActivityLog" Background="Transparent" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Border BorderBrush="#1F293D" BorderThickness="0,0,0,1" Padding="4,6">
+										<StackPanel>
+											<TextBlock Text="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="#5599FF" FontSize="9" FontFamily="Consolas"/>
+											<TextBlock Text="{Binding ActionSummary}" Foreground="White" FontSize="11" TextWrapping="Wrap" Margin="0,2,0,0"/>
+										</StackPanel>
+									</Border>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 
-            <!-- Top Header banner -->
-            <Border Grid.Row="0" Background="#111622" Padding="25,15" BorderBrush="#1F293D" BorderThickness="0,0,0,1">
-                <DockPanel>
-                    <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="🔒 SAFESHIELD INTERACTIVE" Foreground="White" FontSize="18" FontWeight="ExtraBold" FontFamily="Segoe UI"/>
-                        <TextBlock Text="Empowering users through responsive digital cybersecurity training." Foreground="#8B949E" FontSize="11" Margin="0,2,0,0"/>
-                    </StackPanel>
-                    <Button Content="Clear History" Click="BtnClear_Click" DockPanel.Dock="Right" HorizontalAlignment="Right" Background="#242E42" Foreground="#8B949E" Padding="12,5" BorderThickness="0" Cursor="Hand" VerticalAlignment="Center">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </DockPanel>
-            </Border>
+						<!-- Show More Toggle Button -->
+						<Button Grid.Row="2" x:Name="BtnToggleLogs" Content="Show Full Log" Click="BtnToggleLogs_Click" Height="24" Background="#242E42" Foreground="#8B949E" BorderThickness="0" Margin="0,6,0,0" Cursor="Hand" FontSize="10"/>
+					</Grid>
+				</Border>
 
-            <!-- Chat Logger View -->
-            <ScrollViewer Grid.Row="1" x:Name="ChatScroller" Background="#0C101B" VerticalScrollBarVisibility="Auto" Padding="20,10">
-                <StackPanel x:Name="ChatPanel" Margin="0,0,0,10"/>
-            </ScrollViewer>
+				<!-- Footer System Memory -->
+				<Border Grid.Row="3" Background="#161B29" CornerRadius="8" Padding="12" Margin="0,15,0,0">
+					<StackPanel>
+						<TextBlock Text="USER CONTEXT MEMORY" Foreground="#A5B4FC" FontSize="10" FontWeight="Bold" Margin="0,0,0,6"/>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<StackPanel Grid.Column="0">
+								<TextBlock Text="User Name:" Foreground="#8B949E" FontSize="11" Height="18"/>
+								<TextBlock Text="State/Emotion:" Foreground="#8B949E" FontSize="11" Height="18"/>
+								<TextBlock Text="Last Topic:" Foreground="#8B949E" FontSize="11" Height="18"/>
+							</StackPanel>
+							<StackPanel Grid.Column="1" Margin="10,0,0,0">
+								<TextBlock x:Name="TxtMemName" Text="Not set yet" Foreground="White" FontWeight="SemiBold" FontSize="11" Height="18"/>
+								<TextBlock x:Name="TxtMemFeeling" Text="Neutral" Foreground="White" FontWeight="SemiBold" FontSize="11" Height="18"/>
+								<TextBlock x:Name="TxtMemTopic" Text="None" Foreground="White" FontWeight="SemiBold" FontSize="11" Height="18" TextTrimming="CharacterEllipsis"/>
+							</StackPanel>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</Grid>
+		</Border>
 
-            <!-- Bottom typing inputs layout -->
-            <Border Grid.Row="2" Background="#111622" BorderBrush="#1F293D" BorderThickness="0,1,0,0" Padding="20">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+		<!-- ==========================================
+             COL 1: Premium Main Chat Room & Interactive Quiz overlay
+             ========================================== -->
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<!-- Room Top Header -->
+				<RowDefinition Height="*"/>
+				<!-- Scrollable Conversation -->
+				<RowDefinition Height="Auto"/>
+				<!-- Chat input boxes -->
+			</Grid.RowDefinitions>
 
-                    <!-- Text input box -->
-                    <TextBox x:Name="UserInput" Grid.Column="0"
+			<!-- Top Header banner -->
+			<Border Grid.Row="0" Background="#111622" Padding="20,15" BorderBrush="#1F293D" BorderThickness="0,0,0,1">
+				<DockPanel>
+					<StackPanel VerticalAlignment="Center">
+						<TextBlock Text="🔒 CYBER-SHIELD COGNITIVE BOT" Foreground="White" FontSize="17" FontWeight="ExtraBold" FontFamily="Segoe UI"/>
+						<TextBlock Text="Advanced NLP Engine &amp; Cybersecurity Awareness Simulator" Foreground="#8B949E" FontSize="11" Margin="0,2,0,0"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+						<Button Content="Reset History" Click="BtnClear_Click" Background="#242E42" Foreground="#8B949E" Padding="12,5" BorderThickness="0" Margin="0,0,10,0" Cursor="Hand" VerticalAlignment="Center"/>
+						<Button Content="🎮 Start Quiz" Click="BtnStartQuiz_Click" Background="#00CD76" Foreground="White" Padding="12,5" BorderThickness="0" FontWeight="Bold" Cursor="Hand" VerticalAlignment="Center"/>
+					</StackPanel>
+				</DockPanel>
+			</Border>
+
+			<!-- Scrollable Chats Panel with dynamic background elements -->
+			<Grid Grid.Row="1" Background="#0C101B">
+				<!-- Welcome Hint Overlay when Chat is empty -->
+				<StackPanel x:Name="PnlChatHint" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30" Opacity="0.5">
+					<TextBlock Text="🛡️" FontSize="64" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+					<TextBlock Text="Type below to speak with CyberBot." Foreground="White" FontSize="14" FontWeight="SemiBold" TextAlignment="Center"/>
+					<TextBlock Text="Try: 'Add a task to update Windows Defender tomorrow' or 'Do a quiz'" Foreground="#8B949E" FontSize="12" TextAlignment="Center" Margin="0,5,0,0"/>
+				</StackPanel>
+
+				<!-- Chat Scroll Window -->
+				<ScrollViewer x:Name="ChatScroller" VerticalScrollBarVisibility="Auto" Padding="15,10">
+					<StackPanel x:Name="ChatPanel" Margin="0,0,0,10"/>
+				</ScrollViewer>
+
+				<!-- Interactive Quiz Popup Modal Container -->
+				<Border x:Name="ModalQuiz" Visibility="Collapsed" Background="#D80C101B" CornerRadius="12" BorderBrush="#00FF99" BorderThickness="2" Margin="30" VerticalAlignment="Center" MaxWidth="550" Padding="25">
+					<StackPanel>
+						<!-- Quiz Header -->
+						<Grid Margin="0,0,0,15">
+							<TextBlock Text="🧠 CYBERSECURITY TRIVIA CHALLENGE" Foreground="#00FF99" FontWeight="Bold" FontSize="15"/>
+							<TextBlock x:Name="TxtQuizProgress" Text="Question 1/10" Foreground="#8B949E" HorizontalAlignment="Right" FontSize="12" FontWeight="SemiBold"/>
+						</Grid>
+
+						<!-- Question Display -->
+						<TextBlock x:Name="TxtQuizQuestion" Text="What is the safest way to store password tokens?" Foreground="White" FontSize="14.5" FontWeight="Medium" TextWrapping="Wrap" Margin="0,0,0,20" LineHeight="20"/>
+
+						<!-- Options Stack -->
+						<StackPanel x:Name="PnlQuizOptions" Margin="0,0,0,20">
+							<Button x:Name="BtnOptA" Content="Option A" Click="BtnQuizOption_Click" Margin="0,0,0,8" Height="36" Background="#1A2234" Foreground="White" BorderBrush="#2A3852" HorizontalContentAlignment="Left" Padding="12,0"/>
+							<Button x:Name="BtnOptB" Content="Option B" Click="BtnQuizOption_Click" Margin="0,0,0,8" Height="36" Background="#1A2234" Foreground="White" BorderBrush="#2A3852" HorizontalContentAlignment="Left" Padding="12,0"/>
+							<Button x:Name="BtnOptC" Content="Option C" Click="BtnQuizOption_Click" Margin="0,0,0,8" Height="36" Background="#1A2234" Foreground="White" BorderBrush="#2A3852" HorizontalContentAlignment="Left" Padding="12,0"/>
+							<Button x:Name="BtnOptD" Content="Option D" Click="BtnQuizOption_Click" Margin="0,0,0,8" Height="36" Background="#1A2234" Foreground="White" BorderBrush="#2A3852" HorizontalContentAlignment="Left" Padding="12,0"/>
+						</StackPanel>
+
+						<!-- Feedback Box -->
+						<Border x:Name="BdrQuizFeedback" Background="#1E2A3A" CornerRadius="6" Padding="12" Margin="0,0,0,20" Visibility="Collapsed">
+							<StackPanel>
+								<TextBlock x:Name="TxtFeedbackHeader" Text="Correct!" Foreground="#00FF99" FontWeight="Bold" FontSize="13" Margin="0,0,0,4"/>
+								<TextBlock x:Name="TxtFeedbackExplain" Text="Explanation goes here." Foreground="White" FontSize="11.5" TextWrapping="Wrap" LineHeight="16"/>
+							</StackPanel>
+						</Border>
+
+						<!-- Quiz Action buttons -->
+						<Grid>
+							<Button x:Name="BtnQuizClose" Content="Close Game" Click="BtnQuizClose_Click" Background="#EF4444" Foreground="White" HorizontalAlignment="Left" Width="100" Height="30" BorderThickness="0" FontWeight="SemiBold"/>
+							<Button x:Name="BtnQuizNext" Content="Next Question ➔" Click="BtnQuizNext_Click" Background="#00FF99" Foreground="#111622" HorizontalAlignment="Right" Width="130" Height="30" BorderThickness="0" FontWeight="Bold"/>
+						</Grid>
+					</StackPanel>
+				</Border>
+			</Grid>
+
+			<!-- Bottom typing inputs layout -->
+			<Border Grid.Row="2" Background="#111622" BorderBrush="#1F293D" BorderThickness="0,1,0,0" Padding="15">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<!-- Text input box -->
+					<TextBox x:Name="UserInput" Grid.Column="0"
                              Background="#1A2234" Foreground="White" CaretBrush="#00FF99"
-                             FontFamily="Segoe UI" FontSize="14" Padding="15,12"
+                             FontFamily="Segoe UI" FontSize="13.5" Padding="12,10"
                              BorderBrush="#2A3852" BorderThickness="1.5" VerticalContentAlignment="Center"
-                             KeyDown="UserInput_KeyDown" GotFocus="UserInput_GotFocus" LostFocus="UserInput_LostFocus"
-                             Tag="Ask about safe browsing, malware, encryption, scams..."/>
+                             KeyDown="UserInput_KeyDown" GotFocus="UserInput_GotFocus" LostFocus="UserInput_LostFocus"/>
 
-                    <!-- Glowing interactive send button -->
-                    <Button x:Name="SendButton" Grid.Column="1"
-                            Content="Send Message ➤" Margin="15,0,0,0" Padding="25,0"
+					<!-- Glowing interactive send button -->
+					<Button x:Name="SendButton" Grid.Column="1"
+                            Content="Send" Margin="10,0,0,0" Padding="25,0" Height="40"
                             Background="#00CD76" Foreground="White"
-                            FontFamily="Segoe UI" FontSize="14" FontWeight="Bold"
-                            BorderThickness="0" Cursor="Hand" Click="SendButton_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}" CornerRadius="8" Padding="{TemplateBinding Padding}">
-                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#00FF90"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </Grid>
-            </Border>
-        </Grid>
-    </Grid>
+                            FontFamily="Segoe UI" FontSize="13" FontWeight="Bold"
+                            BorderThickness="0" Cursor="Hand" Click="SendButton_Click"/>
+				</Grid>
+			</Border>
+		</Grid>
+
+		<!-- ==========================================
+             COL 2: Task Assistant with Reminders (SQL Integration Control)
+             ========================================== -->
+		<Border Grid.Column="2" Background="#111622" BorderBrush="#1F293D" BorderThickness="1,0,0,0">
+			<Grid Margin="15">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<!-- Header -->
+					<RowDefinition Height="Auto"/>
+					<!-- Add New Task Panel -->
+					<RowDefinition Height="*"/>
+					<!-- Scrollable Active Tasks -->
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0" Text="📅 TASK REMINDER SYSTEMS" Foreground="#00E1FF" FontSize="13" FontWeight="Bold" Margin="0,0,0,10"/>
+
+				<!-- Database Input form to Add Tasks manually (as well as through chatbot dialogue) -->
+				<Border Grid.Row="1" Background="#161B29" CornerRadius="8" Padding="12" Margin="0,0,0,15">
+					<StackPanel>
+						<TextBlock Text="CREATE NEW CYBER TASK" Foreground="White" FontSize="11" FontWeight="Bold" Margin="0,0,0,8"/>
+
+						<TextBlock Text="Task Name:" Foreground="#8B949E" FontSize="10" Margin="0,0,0,3"/>
+						<TextBox x:Name="TxtTaskTitle" Background="#1D2A3A" Foreground="White" BorderBrush="#2A3852" Padding="6" Margin="0,0,0,8" FontSize="12"/>
+
+						<TextBlock Text="Brief Description:" Foreground="#8B949E" FontSize="10" Margin="0,0,0,3"/>
+						<TextBox x:Name="TxtTaskDesc" Background="#1D2A3A" Foreground="White" BorderBrush="#2A3852" Padding="6" Margin="0,0,0,8" FontSize="12" Height="45" TextWrapping="Wrap" AcceptsReturn="True"/>
+
+						<TextBlock Text="Remind in (Days):" Foreground="#8B949E" FontSize="10" Margin="0,0,0,3"/>
+						<Grid Margin="0,0,0,12">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<Slider x:Name="SldDays" Grid.Column="0" Minimum="1" Maximum="30" Value="7" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
+							<TextBlock Grid.Column="1" Text="{Binding ElementName=SldDays, Path=Value, StringFormat='{}{0} Days'}" Foreground="White" Width="55" TextAlignment="Right" VerticalAlignment="Center" FontSize="11" Margin="5,0,0,0"/>
+						</Grid>
+
+						<Button x:Name="BtnSaveTask" Content="Add to DB Store" Click="BtnSaveTask_Click" Height="30" Background="#00CD76" Foreground="White" FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
+					</StackPanel>
+				</Border>
+
+				<!-- List/View section for database stored reminders -->
+				<Grid Grid.Row="2">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Row="0" Text="ACTIVE DATABASE TASKS" Foreground="White" FontSize="11" FontWeight="Bold" Margin="0,5,0,8"/>
+
+					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+						<StackPanel x:Name="PnlTaskList"/>
+					</ScrollViewer>
+				</Grid>
+			</Grid>
+		</Border>
+	</Grid>
 </Window>

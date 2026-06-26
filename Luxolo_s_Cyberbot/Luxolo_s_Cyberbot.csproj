@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Luxolo's Cyberbot\Luxolo's Cyberbot.csproj" />
   </ItemGroup>
 
