@@ -15,11 +15,8 @@ namespace Luxolo_s_Cyberbot_GUI
 {
     public partial class MainWindow : Window
     {
-        
-        // 1. CLASS PROPERTIES, CONFIGURATION, & LOCAL DATA BACKUP
-        // =========================================================
 
-        // This is your SQL Express connection path. It targets the local SQLEXPRESS server.
+        //Stores database connection info and saves chatbot user data like name, topic, emotion, and placeholder text.
         private readonly string ConnectionString = @"Server=.\SQLEXPRESS;Database=CyberbotDB;Trusted_Connection=True;TrustServerCertificate=True;";
 
         private string _userName = "";
@@ -28,12 +25,12 @@ namespace Luxolo_s_Cyberbot_GUI
         private string _userEmotion = "Neutral";
         private readonly string _placeholder = "Ask about safe browsing, malware, encryption, scams...";
 
-        // If your SQL Server is offline, this memory backup keeps the app running flawlessly.
+        // If your SQL Server is offline, this memory backup keeps the app running.
         private List<CyberTask> _offlineTaskList = new List<CyberTask>();
         private List<ActivityLog> _activityLogs = new List<ActivityLog>();
-        private bool _isShowingAllLogs = false; // Monitors "Show More" sidebar log toggle state.
+        private bool _isShowingAllLogs = false; 
 
-        // General Q&A Bot Knowledge dictionary.
+        // Dictionary.
         private readonly Dictionary<string, string> _responses = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["phishing"] = "⚠️ Phishing is when criminals send fake messages mimicking legitimate entities.\n\n🛡️ PREVENTION:\n- Inspect sender addresses closely.\n- Never click immediate log-in requests.",
@@ -44,7 +41,7 @@ namespace Luxolo_s_Cyberbot_GUI
             ["scams"] = "🚨 Scams request immediate actions with artificial deadlines or fake rewards."
         };
 
-        // Sentiment vocabulary mappings to change the bot's dynamic responses.
+        // This matches emotions in text and gives helpful chatbot replies for each feeling.
         private readonly Dictionary<string, string> _sentimentTriggers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["worried"] = "It's normal to feel concerned about safety. Let's configure defenses step-by-step.",
@@ -53,9 +50,8 @@ namespace Luxolo_s_Cyberbot_GUI
             ["excited"] = "Outstanding! Cyber training leads to secure digital presence."
         };
 
-        // =========================================================
+        
         // 2. CYBER QUIZ VARIABLES & INNER CLASS
-        // =========================================================
         private class QuizQuestion
         {
             public string QuestionText { get; set; }
@@ -69,9 +65,8 @@ namespace Luxolo_s_Cyberbot_GUI
         private int _userQuizScore = 0;
         private bool _quizOptionSelected = false;
 
-        // =========================================================
+       
         // 3. STORAGE MODELS
-        // =========================================================
         public class CyberTask
         {
             public int Id { get; set; }
@@ -87,9 +82,8 @@ namespace Luxolo_s_Cyberbot_GUI
             public string ActionSummary { get; set; }
         }
 
-        // =========================================================
+     
         // 4. MAIN SYSTEM CONSTRUCTOR
-        // =========================================================
         public MainWindow()
         {
             InitializeComponent();
@@ -178,9 +172,8 @@ namespace Luxolo_s_Cyberbot_GUI
             });
         }
 
-        // =========================================================
+       
         // 5. DATABASE OPERATIONS & SYNC (SQL EXPRESS)
-        // =========================================================
         private void InitializeLocalDatabase()
         {
             try
