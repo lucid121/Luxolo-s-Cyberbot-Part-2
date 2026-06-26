@@ -224,7 +224,7 @@ namespace Luxolo_s_Cyberbot_GUI
                 LogActivity("SQL Connection failed. Switched to in-memory local fallback storage. Error details: " + ex.Message);
             }
         }
-
+        
         private void LogActivity(string summary)
         {
             _activityLogs.Add(new ActivityLog

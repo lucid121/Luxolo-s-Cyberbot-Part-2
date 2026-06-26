@@ -9,7 +9,7 @@ namespace Luxolo_s_Cyberbot
         static void Main(string[] args)
         {
             // So its starts with Gui
-            string StartupName = "Luxolo_s_Cyberbot.exe";
+            string StartupName = "Luxolo_s_Cyberbot.exe"; 
             string WhereIam = AppDomain.CurrentDomain.BaseDirectory;
 
             // Search for the GUI 
