@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Luxolo's Cyberbot\Luxolos Cyberbot.csproj" />
     <ProjectReference Include="..\Luxolos Cyberbot\Luxolos Cyberbot.csproj" />
   </ItemGroup>
 
